@@ -3,6 +3,7 @@ import { Meteor } from 'meteor/meteor';
 import classnames from 'classnames';
 import createBrowserHistory from 'history/createBrowserHistory';
 import { Quizzes } from '../api/quizzes.js';
+import QuizList from './QuizList';
 
 // Quiz component - represents a single quiz item
 export default class QuizListItem extends Component {
@@ -11,18 +12,19 @@ export default class QuizListItem extends Component {
     super(props);
   }
 
-  deleteQuiz(quizId) {
-    Meteor.call('quizzes.remove', this.props.quiz._id);
+  deleteQuiz() {
+    var quizId = this.props.quiz._id
+    Meteor.call('quizzes.remove', quizId);
   }
 
   render() {
     const quizClassName = classnames({});
-
     return (
     <div className="quizTable">
       <table className={quizClassName}>
         <thead>
           <tr>
+            <th>Category</th>
             <th>Question</th>
             <th>A:</th>
             <th>B:</th>
@@ -32,6 +34,7 @@ export default class QuizListItem extends Component {
         </thead>
           <tbody>
             <tr>
+              <td>{this.props.quiz.category}</td>
               <td>{this.props.quiz.question}</td>
               <td>{this.props.quiz.correctAnswer}</td>
               <td>{this.props.quiz.answer1}</td>

@@ -26,7 +26,7 @@ const history = createBrowserHistory();
 window.browserHistory = history;
 
 const unauthenticatedPages = ['/signin', '/signup'];
-const authenticatedPages = ['/dash', '/admin', '/manageusers'];
+const authenticatedPages = ['/dash', '/admin', '/manageusers', '/quizzes'];
 
 export const routes = (
   <Router history={history}>
@@ -34,6 +34,7 @@ export const routes = (
       <Route path="/signin" component={Signin}/>
       <Route path="/signup" component={Signup}/>
       <Route path="/dash" component={Dashboard}/>
+      <Route path="/quizzes/_id" component={QuizList}/>
       <Route path="/admin" component={Admin}/>
       <Route path="/manageusers" component={ManageUsers}/>
     </Switch>
@@ -48,7 +49,7 @@ Tracker.autorun(() => {
   const isAuthenticatedPage = authenticatedPages.includes(pathname);
 
   if (isUnauthenticatedPage && isAuthenticated) {
-    browserHistory.push('/dash', '/admin', '/manageusers');
+    browserHistory.push('/dash', '/admin', '/manageusers', '/quizzes');
   } else if (isAuthenticatedPage && !isAuthenticated) {
     browserHistory.push('signin');
   }

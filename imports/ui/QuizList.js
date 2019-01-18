@@ -14,15 +14,11 @@ class QuizList extends Component {
     super(props);
 
     this.state = {
-    };
+  };
   }
-
-
   renderQuizzes() {
     let filteredQuizzes = this.props.quizzes;
-
     return filteredQuizzes.map((quiz) => {
-
       return (
         <QuizListItem
           key={quiz._id}
@@ -42,7 +38,7 @@ class QuizList extends Component {
         </header>
 
         <table>
-          {this.renderQuizzes()}
+          {this.renderQuizzes({})}
         </table>
       </div>
     );

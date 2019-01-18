@@ -9,21 +9,3 @@ if (Meteor.isServer) {
     return Quizzes.find({});
   });
 }
-
-
-Meteor.methods({
-  'quizzes.insert'(questionAsked, correctAnswer, answer1, answer2, answer3, userId) {
-    if (!this.userId) {
-      throw new Meteor.Error('not-authorized');
-    }
-    return Quizzes.insert({
-      question: questionAsked,
-      correctAnswer: correctAnswer,
-      answer1: answer1,
-      answer2: answer2,
-      answer3: answer3,
-      userId: this.userId
-
-    });
-  }
-});
